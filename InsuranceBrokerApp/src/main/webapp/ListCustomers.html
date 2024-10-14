@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Page</title>
+    <link rel="stylesheet" href="Customer.css">
+</head>
+<body>
+    <header>
+        <h1>Insurance Broker App</h1>
+        <nav>
+            <ul>
+               <li><a href="Home.html">Home</a></li>
+               <li><a href="Customers.html">Customer</a></li>
+               <li><a href="Policies.html">Policies</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>List Customers</h2>
+            <button id="ListCustomers">Load Customers</button>
+        </section>
+        
+        <div id="customerTable" style="margin-top: 20px;"></div>
+        <div id="message" style="margin-top: 20px; font-weight: bold;"></div>
+
+        <script>
+        document.getElementById('ListCustomers').addEventListener('click', function() {
+            const timestamp = new Date().getTime(); // Generate a unique timestamp
+            fetch(`ListCustomers?t=${timestamp}`) // Append it to the URL
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('customerTable').innerHTML = data;
+                    document.getElementById('message').innerText = ""; // Clear previous messages
+                })
+                .catch(error => {
+                    console.error('Error fetching customer list:', error);
+                    document.getElementById('message').innerText = "Failed to load customers.";
+                });
+        });
+        </script>
+    </main>
+    <footer>
+        <p>&copy; 2024 My Website</p>
+    </footer>
+</body>
+</html>

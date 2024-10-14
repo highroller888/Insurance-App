@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Policy</title>
+    <link rel="stylesheet" href="Policies.css">
+</head>
+<body>
+    <header>
+        <h1>Insurance Broker App</h1>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Customers.html">Customer</a></li>
+                <li><a href="Policies.html">Policies</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Delete Policy</h2>
+        </section>
+        <section>
+            <form action="DeletePoliciesServlet" method="post">
+                <label for="policyID">Policy ID:</label>
+                <input type="text" id="policyID" name="policyID" required><br><br>
+
+                <input type="submit" value="Delete Policy">
+            </form>
+        </section>
+        <div id="message" style="margin-top: 20px; font-weight: bold;"></div>
+
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                document.getElementById('message').innerText = message;
+            }
+        </script>
+    </main>
+    <footer>
+        <p>&copy; 2024 My Website</p>
+    </footer>
+</body>
+</html>
